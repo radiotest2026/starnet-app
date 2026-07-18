@@ -469,10 +469,10 @@
 
 
     /* ==============================
-       شكل جهاز الرسيفر
+       صورة الجهاز (Updated with user image)
     ============================== */
 
-    .hero-device {
+    .hero-device-wrapper {
       width: 145px;
       height: 90px;
 
@@ -484,66 +484,14 @@
       justify-content: center;
     }
 
-    .receiver-device {
-      width: 140px;
-      height: 72px;
-
-      position: relative;
-
-      border-radius: 13px;
-
+    .device-image-custom {
+      width: 145px;
+      height: auto;
       transform:
         perspective(700px)
         rotateY(-13deg)
         rotateX(7deg);
-
-      background:
-        linear-gradient(
-          180deg,
-          #2b3543,
-          #07090e
-        );
-
-      box-shadow:
-        0 20px 27px
-        rgba(0, 0, 0, 0.48);
-    }
-
-    .receiver-device::before {
-      content: "STAR NET";
-
-      position: absolute;
-
-      left: 14px;
-      top: 27px;
-
-      color: #45ddff;
-
-      font-size: 9px;
-      letter-spacing: 1px;
-
-      text-shadow:
-        0 0 8px #45ddff;
-    }
-
-    .receiver-device::after {
-      content: "";
-
-      position: absolute;
-
-      right: 15px;
-      top: 29px;
-
-      width: 26px;
-
-      height: 5px;
-
-      border-radius: 4px;
-
-      background: #23baff;
-
-      box-shadow:
-        0 0 11px #23baff;
+      filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));
     }
 
     .receiver-shadow {
@@ -552,7 +500,7 @@
 
       position: absolute;
 
-      bottom: 0;
+      bottom: -10px;
 
       border-radius: 50%;
 
@@ -763,7 +711,7 @@
       height: 43px;
 
       position: relative;
-
+      overflow: hidden;
       border-radius: 10px;
 
       background:
@@ -778,23 +726,10 @@
         rgba(0, 0, 0, 0.3);
     }
 
-    .update-device::after {
-      content: "";
-
-      position: absolute;
-
-      right: 9px;
-      top: 18px;
-
-      width: 19px;
-      height: 4px;
-
-      border-radius: 3px;
-
-      background: #23baff;
-
-      box-shadow:
-        0 0 8px #23baff;
+    .update-device img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .update-info h3 {
@@ -1156,12 +1091,10 @@
 
         </div>
 
-        <div class="hero-device">
-
+        <div class="hero-device-wrapper">
           <div class="receiver-shadow"></div>
-
-          <div class="receiver-device"></div>
-
+          <!--  -->
+          <img class="device-image-custom" src="https://i.postimg.cc/zBttP2gR/Picsart-26-07-19-02-15-18-985.png" alt="ستار نت ايدج برو">
         </div>
 
       </section>
@@ -1173,7 +1106,7 @@
         <div class="section-header">
 
           <div class="section-title">
-            <span>اختر الخدمة</span>
+            <span>1. اختر الخدمة</span>
             <h2>خدمات التطبيق</h2>
           </div>
 
@@ -1267,7 +1200,7 @@
         <div class="section-header">
 
           <div class="section-title">
-            <span>آخر الإضافات</span>
+            <span>2. آخر الإضافات</span>
             <h2>أحدث التحديثات</h2>
           </div>
 
@@ -1313,7 +1246,9 @@
 
           <article class="update-card">
 
-            <div class="update-device"></div>
+            <div class="update-device">
+              <img src="https://i.postimg.cc/DyZFZRgR/file-000000003fac82438f5a5652fa9321a1.png" alt="ستار نت ايدج برو">
+            </div>
 
             <div class="update-info">
 
