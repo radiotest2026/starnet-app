@@ -1,0 +1,2101 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#071a3a" />
+  <title>ستار نت</title>
+
+  <style>
+    :root {
+      --bg: #06142f;
+      --bg-2: #0a2148;
+      --card: #0e2a57;
+      --card-2: #123566;
+      --text: #f7fbff;
+      --muted: #a9bdd7;
+      --primary: #28b8ff;
+      --primary-2: #4169ff;
+      --green: #25c584;
+      --orange: #ffb94a;
+      --purple: #8d6cff;
+      --danger: #ff6b7a;
+      --line: rgba(255, 255, 255, 0.1);
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      background: linear-gradient(145deg, #dce8f8, #f8fbff);
+      color: var(--text);
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app {
+      width: min(100%, 520px);
+      min-height: 100vh;
+      margin: auto;
+      padding-bottom: 92px;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(40, 184, 255, 0.17),
+          transparent 30%
+        ),
+        linear-gradient(180deg, var(--bg-2), var(--bg));
+      box-shadow: var(--shadow);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      height: 78px;
+      padding: 12px 17px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      background: rgba(6, 20, 47, 0.91);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-2)
+      );
+      box-shadow: 0 8px 23px rgba(40, 184, 255, 0.28);
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .brand small {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .icon-button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      color: white;
+      position: relative;
+    }
+
+    .notification-dot {
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--danger);
+    }
+
+    main {
+      padding: 17px;
+    }
+
+    .page {
+      display: none;
+      animation: showPage 0.25s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes showPage {
+      from {
+        opacity: 0;
+        transform: translateY(7px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      min-height: 225px;
+      padding: 21px;
+      border-radius: 27px;
+      border: 1px solid rgba(84, 190, 255, 0.27);
+      background: linear-gradient(
+        135deg,
+        rgba(17, 59, 113, 0.97),
+        rgba(7, 28, 65, 0.97)
+      );
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -80px;
+      top: -90px;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(40, 184, 255, 0.28),
+        transparent 68%
+      );
+    }
+
+    .hero-copy {
+      width: 60%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      color: #7adfff;
+      background: rgba(40, 184, 255, 0.13);
+      border: 1px solid rgba(40, 184, 255, 0.27);
+    }
+
+    .hero h1 {
+      margin: 12px 0 8px;
+      font-size: 29px;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      margin: 0 0 16px;
+      color: #c5d7eb;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .receiver {
+      width: 145px;
+      height: 72px;
+      border-radius: 12px;
+      background: linear-gradient(#252f3d, #07090e);
+      box-shadow: 0 18px 25px rgba(0, 0, 0, 0.45);
+      transform: perspective(700px) rotateY(-13deg) rotateX(7deg);
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+      color: #47e4ff;
+      text-shadow: 0 0 8px #47e4ff;
+    }
+
+    .primary-button,
+    .download-button {
+      border: 0;
+      border-radius: 13px;
+      color: white;
+      font-weight: 700;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-2)
+      );
+      box-shadow: 0 9px 20px rgba(40, 184, 255, 0.22);
+    }
+
+    .primary-button {
+      padding: 12px 16px;
+    }
+
+    .download-button {
+      padding: 10px 12px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+      margin-top: 15px;
+    }
+
+    .quick-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      color: white;
+      text-align: right;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.035)
+      );
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      column-gap: 10px;
+      align-items: center;
+    }
+
+    .quick-icon {
+      grid-row: 1 / 3;
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+      background: rgba(40, 184, 255, 0.15);
+    }
+
+    .quick-card strong {
+      font-size: 14px;
+    }
+
+    .quick-card small {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    .section {
+      margin-top: 23px;
+    }
+
+    .section-head,
+    .page-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 13px;
+    }
+
+    .section-head h2,
+    .page-head h1 {
+      margin: 4px 0 0;
+    }
+
+    .section-head h2 {
+      font-size: 20px;
+    }
+
+    .page-head h1 {
+      font-size: 25px;
+    }
+
+    .section-head span,
+    .page-head span {
+      color: #65d5ff;
+      font-size: 11px;
+    }
+
+    .text-button {
+      border: 0;
+      background: transparent;
+      color: #64d6ff;
+      font-weight: 700;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.075),
+        rgba(255, 255, 255, 0.035)
+      );
+    }
+
+    .update-card,
+    .software-card,
+    .file-card,
+    .news-card {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .device-image {
+      width: 60px;
+      height: 42px;
+      border-radius: 9px;
+      position: relative;
+      background: linear-gradient(#283240, #07090e);
+      box-shadow: 0 8px 14px rgba(0, 0, 0, 0.32);
+    }
+
+    .device-image::after {
+      content: "";
+      position: absolute;
+      right: 9px;
+      top: 17px;
+      width: 19px;
+      height: 4px;
+      border-radius: 4px;
+      background: #27bfff;
+      box-shadow: 0 0 8px #27bfff;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .card p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      padding: 6px 9px;
+      border-radius: 999px;
+      color: #6edaff;
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(40, 184, 255, 0.14);
+    }
+
+    .support-banner {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 20px;
+      border: 1px solid rgba(141, 108, 255, 0.22);
+      background: linear-gradient(
+        135deg,
+        rgba(141, 108, 255, 0.14),
+        rgba(40, 184, 255, 0.08)
+      );
+      display: grid;
+      grid-template-columns: 50px 1fr auto;
+      gap: 11px;
+      align-items: center;
+    }
+
+    .support-banner .big-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      background: rgba(141, 108, 255, 0.16);
+    }
+
+    .support-banner p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .ghost-button {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: white;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .filters {
+      display: flex;
+      gap: 9px;
+      margin-bottom: 13px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      outline: none;
+      color: white;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    input,
+    select {
+      height: 46px;
+      padding: 0 12px;
+    }
+
+    textarea {
+      padding: 12px;
+      resize: vertical;
+    }
+
+    option {
+      color: #111;
+    }
+
+    .search-box {
+      flex: 1;
+    }
+
+    .select-box {
+      width: 38%;
+    }
+
+    .segment {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      padding: 5px;
+      margin-bottom: 13px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .segment button {
+      border: 0;
+      border-radius: 11px;
+      padding: 10px 4px;
+      color: var(--muted);
+      background: transparent;
+    }
+
+    .segment button.active {
+      color: white;
+      font-weight: 700;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-2)
+      );
+    }
+
+    .instructions {
+      margin-top: 17px;
+      padding: 15px 17px;
+      border-radius: 18px;
+      color: #dce9f7;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid var(--line);
+    }
+
+    .instructions h3 {
+      margin: 0 0 10px;
+    }
+
+    .instructions ol {
+      margin: 0;
+      padding-right: 20px;
+      line-height: 1.9;
+      font-size: 12px;
+    }
+
+    .frequency-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+
+    .frequency-details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      margin-top: 11px;
+    }
+
+    .frequency-stat {
+      padding: 9px 6px;
+      border-radius: 12px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .frequency-stat small {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    .frequency-stat strong {
+      font-size: 12px;
+    }
+
+    .status-new {
+      color: #66eaae;
+      background: rgba(37, 197, 132, 0.14);
+    }
+
+    .status-updated {
+      color: #6edaff;
+      background: rgba(40, 184, 255, 0.14);
+    }
+
+    .featured-news {
+      min-height: 190px;
+      padding: 20px;
+      border-radius: 24px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(40, 184, 255, 0.25);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(15, 53, 103, 0.96),
+          rgba(7, 26, 59, 0.98)
+        ),
+        radial-gradient(
+          circle,
+          rgba(40, 184, 255, 0.3),
+          transparent 60%
+        );
+    }
+
+    .featured-news h2 {
+      margin: 12px 0 8px;
+      font-size: 23px;
+    }
+
+    .featured-news p {
+      color: #c4d7eb;
+      font-size: 12px;
+      line-height: 1.75;
+    }
+
+    .news-tag {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 999px;
+      color: #77ddff;
+      font-size: 10px;
+      background: rgba(40, 184, 255, 0.14);
+    }
+
+    .news-card {
+      grid-template-columns: 1fr auto;
+    }
+
+    .news-date {
+      color: #65d5ff;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px;
+    }
+
+    .contact-card {
+      min-height: 125px;
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      color: white;
+      padding: 15px;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.055);
+    }
+
+    .contact-card .contact-icon {
+      font-size: 28px;
+    }
+
+    .contact-card small {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .whatsapp {
+      background: rgba(37, 197, 132, 0.12);
+    }
+
+    .phone {
+      background: rgba(40, 184, 255, 0.12);
+    }
+
+    .ticket {
+      background: rgba(141, 108, 255, 0.12);
+    }
+
+    .guide {
+      background: rgba(255, 185, 74, 0.11);
+    }
+
+    .faq-item {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      margin-bottom: 9px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      color: white;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      text-align: right;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 14px 14px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      z-index: 60;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100%, 520px);
+      height: 77px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-top: 1px solid var(--line);
+      background: rgba(6, 20, 47, 0.96);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-item {
+      border: 0;
+      color: #7890ad;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 10px;
+    }
+
+    .nav-item .nav-icon {
+      font-size: 20px;
+    }
+
+    .nav-item.active {
+      color: #63d6ff;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 100;
+      left: 50%;
+      bottom: 95px;
+      transform: translate(-50%, 20px);
+      width: min(90%, 420px);
+      padding: 13px 15px;
+      border-radius: 14px;
+      color: white;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      background: #102d58;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      box-shadow: var(--shadow);
+      transition: 0.25s;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: none;
+      align-items: end;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.62);
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(100%, 520px);
+      max-height: 90vh;
+      overflow: auto;
+      padding: 18px;
+      border-radius: 25px 25px 0 0;
+      background: #0b2147;
+      border: 1px solid var(--line);
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .modal-head h2 {
+      margin: 0;
+    }
+
+    .close-button {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: white;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 11px;
+      color: #dce9f7;
+      font-size: 12px;
+    }
+
+    form input,
+    form textarea {
+      margin-top: 6px;
+    }
+
+    .full {
+      width: 100%;
+    }
+
+    .empty {
+      padding: 17px;
+      border-radius: 16px;
+      color: var(--muted);
+      text-align: center;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    @media (min-width: 700px) {
+      body {
+        padding: 24px 0;
+      }
+
+      .app {
+        border-radius: 30px;
+        min-height: calc(100vh - 48px);
+      }
+
+      .topbar {
+        border-radius: 30px 30px 0 0;
+      }
+
+      .bottom-nav {
+        bottom: 24px;
+        border-radius: 0 0 30px 30px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      main {
+        padding: 13px;
+      }
+
+      .hero {
+        padding: 17px;
+      }
+
+      .hero h1 {
+        font-size: 24px;
+      }
+
+      .receiver {
+        width: 115px;
+      }
+
+      .software-card {
+        grid-template-columns: 55px 1fr auto;
+      }
+
+      .device-image {
+        width: 55px;
+      }
+
+      .download-button {
+        padding: 9px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">★</div>
+
+        <div>
+          <strong>ستار نت</strong>
+          <small>كل تحديثات جهازك في مكان واحد</small>
+        </div>
+      </div>
+
+      <button
+        class="icon-button"
+        id="notificationButton"
+        aria-label="الإشعارات"
+      >
+        🔔
+        <span class="notification-dot"></span>
+      </button>
+    </header>
+
+    <main>
+      <!-- الصفحة الرئيسية -->
+      <section class="page active" data-page="home">
+        <div class="hero">
+          <div class="hero-copy">
+            <span class="pill">تحديث جديد</span>
+
+            <h1>أداء أسرع لجهازك</h1>
+
+            <p>
+              حمّل أحدث السوفتات وملفات القنوات، وتابع الترددات
+              وأخبار الشركة.
+            </p>
+
+            <button class="primary-button" data-go="downloads">
+              استعرض التحديثات
+            </button>
+          </div>
+
+          <div class="receiver">STAR NET</div>
+        </div>
+
+        <div class="quick-grid">
+          <button class="quick-card" data-go="downloads">
+            <span class="quick-icon">⬇️</span>
+            <strong>السوفتات</strong>
+            <small>آخر تحديثات الأجهزة</small>
+          </button>
+
+          <button class="quick-card" data-go="channels">
+            <span class="quick-icon">📁</span>
+            <strong>ملفات القنوات</strong>
+            <small>قوائم جاهزة للتحميل</small>
+          </button>
+
+          <button class="quick-card" data-go="frequencies">
+            <span class="quick-icon">📡</span>
+            <strong>الترددات</strong>
+            <small>أحدث تغييرات القنوات</small>
+          </button>
+
+          <button class="quick-card" data-go="news">
+            <span class="quick-icon">📰</span>
+            <strong>الأخبار</strong>
+            <small>أخبار الشركة والساتلايت</small>
+          </button>
+        </div>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <span>آخر الإضافات</span>
+              <h2>تحديثات موصى بها</h2>
+            </div>
+
+            <button class="text-button" data-go="downloads">
+              عرض الكل
+            </button>
+          </div>
+
+          <div class="list" id="homeUpdates"></div>
+        </section>
+
+        <div class="support-banner">
+          <div class="big-icon">🎧</div>
+
+          <div>
+            <strong>محتاج مساعدة؟</strong>
+            <p>فريق الدعم الفني جاهز للرد عليك.</p>
+          </div>
+
+          <button class="ghost-button" data-go="support">
+            تواصل
+          </button>
+        </div>
+      </section>
+
+      <!-- صفحة السوفتات -->
+      <section class="page" data-page="downloads">
+        <div class="page-head">
+          <div>
+            <span>مركز التحميل</span>
+            <h1>السوفتات والتحديثات</h1>
+          </div>
+
+          <span class="badge" id="softwareCount">0</span>
+        </div>
+
+        <div class="filters">
+          <select class="select-box" id="brandFilter">
+            <option value="all">كل الأجهزة</option>
+          </select>
+
+          <input
+            class="search-box"
+            id="softwareSearch"
+            type="search"
+            placeholder="ابحث باسم الجهاز..."
+          />
+        </div>
+
+        <div class="list" id="softwareList"></div>
+
+        <div class="instructions">
+          <h3>تنبيه مهم</h3>
+          تأكد من تطابق اسم الموديل قبل تحميل السوفت. لا تستخدم
+          ملفًا مخصصًا لجهاز مختلف.
+        </div>
+      </section>
+
+      <!-- صفحة ملفات القنوات -->
+      <section class="page" data-page="channels">
+        <div class="page-head">
+          <div>
+            <span>ملفات جاهزة</span>
+            <h1>ملفات القنوات</h1>
+          </div>
+        </div>
+
+        <div class="segment">
+          <button class="active" data-channel-tab="arabic">
+            عربي
+          </button>
+
+          <button data-channel-tab="english">
+            إنجليزي
+          </button>
+
+          <button data-channel-tab="favorites">
+            المفضلة
+          </button>
+        </div>
+
+        <div class="list" id="channelFiles"></div>
+
+        <div class="instructions">
+          <h3>طريقة تحميل ملف القنوات</h3>
+
+          <ol>
+            <li>وصّل الجهاز بالإنترنت.</li>
+            <li>اضغط Menu وافتح تطبيق File Manager.</li>
+            <li>اختر القرص المشترك ثم FTP.</li>
+            <li>اختر اسم الجهاز ثم ملفات قنوات.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- صفحة الترددات -->
+      <section class="page" data-page="frequencies">
+        <div class="page-head">
+          <div>
+            <span>قاعدة الترددات</span>
+            <h1>الترددات الجديدة</h1>
+          </div>
+
+          <button
+            class="icon-button"
+            id="refreshFrequencies"
+            aria-label="تحديث الترددات"
+          >
+            ↻
+          </button>
+        </div>
+
+        <div class="filters">
+          <select class="select-box" id="satelliteFilter">
+            <option value="all">كل الأقمار</option>
+          </select>
+
+          <input
+            class="search-box"
+            id="frequencySearch"
+            type="search"
+            placeholder="ابحث باسم القناة..."
+          />
+        </div>
+
+        <div class="list" id="frequencyList"></div>
+      </section>
+
+      <!-- صفحة الأخبار -->
+      <section class="page" data-page="news">
+        <div class="page-head">
+          <div>
+            <span>آخر المستجدات</span>
+            <h1>الأخبار والعروض</h1>
+          </div>
+        </div>
+
+        <article
+          class="featured-news"
+          id="featuredNews"
+        ></article>
+
+        <div class="list" id="newsList"></div>
+      </section>
+
+      <!-- صفحة الدعم -->
+      <section class="page" data-page="support">
+        <div class="page-head">
+          <div>
+            <span>نحن هنا لمساعدتك</span>
+            <h1>الدعم الفني</h1>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <a
+            class="contact-card whatsapp"
+            href="https://wa.me/201092652777"
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="contact-icon">💬</span>
+            <strong>واتساب</strong>
+            <small>تواصل سريع مع الدعم</small>
+          </a>
+
+          <a
+            class="contact-card phone"
+            href="tel:+201092652777"
+          >
+            <span class="contact-icon">📞</span>
+            <strong>اتصال</strong>
+            <small>خدمة العملاء</small>
+          </a>
+
+          <button
+            class="contact-card ticket"
+            id="openTicketButton"
+          >
+            <span class="contact-icon">🎫</span>
+            <strong>تذكرة دعم</strong>
+            <small>أرسل تفاصيل المشكلة</small>
+          </button>
+
+          <button
+            class="contact-card guide"
+            data-go="channels"
+          >
+            <span class="contact-icon">📘</span>
+            <strong>دليل الاستخدام</strong>
+            <small>خطوات وحلول سريعة</small>
+          </button>
+        </div>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <span>إجابات سريعة</span>
+              <h2>الأسئلة الشائعة</h2>
+            </div>
+          </div>
+
+          <div id="faqList"></div>
+        </section>
+      </section>
+    </main>
+
+    <!-- شريط التنقل السفلي -->
+    <nav class="bottom-nav">
+      <button
+        class="nav-item active"
+        data-page-target="home"
+      >
+        <span class="nav-icon">🏠</span>
+        <span>الرئيسية</span>
+      </button>
+
+      <button
+        class="nav-item"
+        data-page-target="downloads"
+      >
+        <span class="nav-icon">⬇️</span>
+        <span>التحميلات</span>
+      </button>
+
+      <button
+        class="nav-item"
+        data-page-target="frequencies"
+      >
+        <span class="nav-icon">📡</span>
+        <span>الترددات</span>
+      </button>
+
+      <button
+        class="nav-item"
+        data-page-target="news"
+      >
+        <span class="nav-icon">📰</span>
+        <span>الأخبار</span>
+      </button>
+
+      <button
+        class="nav-item"
+        data-page-target="support"
+      >
+        <span class="nav-icon">🎧</span>
+        <span>الدعم</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- رسالة التنبيه -->
+  <div class="toast" id="toast"></div>
+
+  <!-- نافذة تذكرة الدعم -->
+  <div class="modal" id="ticketModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2>إرسال تذكرة دعم</h2>
+
+        <button
+          class="close-button"
+          id="closeTicketButton"
+        >
+          ×
+        </button>
+      </div>
+
+      <form id="ticketForm">
+        <label>
+          الاسم
+          <input
+            name="name"
+            required
+            placeholder="اكتب اسمك"
+          />
+        </label>
+
+        <label>
+          رقم الهاتف
+          <input
+            name="phone"
+            required
+            inputmode="tel"
+            placeholder="01xxxxxxxxx"
+          />
+        </label>
+
+        <label>
+          موديل الجهاز
+          <input
+            name="device"
+            required
+            placeholder="مثال: EDGE PRO"
+          />
+        </label>
+
+        <label>
+          وصف المشكلة
+          <textarea
+            name="issue"
+            rows="4"
+            required
+            placeholder="اشرح المشكلة باختصار"
+          ></textarea>
+        </label>
+
+        <button
+          class="primary-button full"
+          type="submit"
+        >
+          إرسال الطلب
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    /* بيانات السوفتات */
+    const software = [
+      {
+        name: "STAR X7",
+        brand: "STAR",
+        version: "V2.34",
+        date: "18 يوليو 2026",
+        size: "19.8 MB",
+        note: "تحسين ثبات السيرفر وتسريع فتح القنوات"
+      },
+      {
+        name: "STARNET EDGE PRO",
+        brand: "EDGE",
+        version: "V1.12",
+        date: "17 يوليو 2026",
+        size: "22.6 MB",
+        note: "تحسين الترجمة وإصلاحات عامة"
+      },
+      {
+        name: "STAR H1 MINI",
+        brand: "STAR",
+        version: "V1.08",
+        date: "15 يوليو 2026",
+        size: "17.3 MB",
+        note: "إضافة تحديثات للقنوات وخيارات النظام"
+      },
+      {
+        name: "EDGE LITE",
+        brand: "EDGE",
+        version: "V1.09",
+        date: "12 يوليو 2026",
+        size: "18.1 MB",
+        note: "تحسين أداء الشبكة والاتصال"
+      },
+      {
+        name: "STAR Q5",
+        brand: "STAR",
+        version: "V1.21",
+        date: "10 يوليو 2026",
+        size: "20.4 MB",
+        note: "تحديث مشغل الوسائط وقاعدة البيانات"
+      }
+    ];
+
+    /* بيانات ملفات القنوات */
+    const channelFilesData = {
+      arabic: [
+        {
+          name: "ملف قنوات عربي شامل",
+          satellite: "نايل سات + عرب سات",
+          date: "18 يوليو 2026",
+          size: "3.8 MB"
+        },
+        {
+          name: "ملف قنوات رياضية",
+          satellite: "نايل سات",
+          date: "17 يوليو 2026",
+          size: "2.1 MB"
+        },
+        {
+          name: "ملف قنوات أطفال وترفيه",
+          satellite: "نايل سات",
+          date: "15 يوليو 2026",
+          size: "2.7 MB"
+        }
+      ],
+
+      english: [
+        {
+          name: "English Channel List",
+          satellite: "Nilesat + Hotbird",
+          date: "18 July 2026",
+          size: "3.5 MB"
+        },
+        {
+          name: "Sports & Movies List",
+          satellite: "Hotbird",
+          date: "16 July 2026",
+          size: "2.4 MB"
+        }
+      ],
+
+      favorites: [
+        {
+          name: "قائمة مفضلة عائلية",
+          satellite: "نايل سات",
+          date: "14 يوليو 2026",
+          size: "1.9 MB"
+        },
+        {
+          name: "قائمة مفضلة رياضية",
+          satellite: "نايل سات",
+          date: "13 يوليو 2026",
+          size: "1.6 MB"
+        }
+      ]
+    };
+
+    /* بيانات الترددات */
+    const frequencies = [
+      {
+        channel: "MBC مصر 2 HD",
+        satellite: "نايل سات",
+        frequency: "12015",
+        polarization: "رأسي V",
+        symbolRate: "27500",
+        status: "جديد"
+      },
+      {
+        channel: "SSC 1 HD",
+        satellite: "عرب سات",
+        frequency: "12380",
+        polarization: "أفقي H",
+        symbolRate: "27500",
+        status: "محدث"
+      },
+      {
+        channel: "ON Sport 1",
+        satellite: "نايل سات",
+        frequency: "11861",
+        polarization: "رأسي V",
+        symbolRate: "27500",
+        status: "جديد"
+      },
+      {
+        channel: "beIN Sports News",
+        satellite: "سهيل سات",
+        frequency: "11566",
+        polarization: "أفقي H",
+        symbolRate: "27500",
+        status: "محدث"
+      },
+      {
+        channel: "Al Ahly TV",
+        satellite: "نايل سات",
+        frequency: "11747",
+        polarization: "رأسي V",
+        symbolRate: "27500",
+        status: "جديد"
+      },
+      {
+        channel: "Dubai Sports",
+        satellite: "عرب سات",
+        frequency: "12130",
+        polarization: "رأسي V",
+        symbolRate: "27500",
+        status: "محدث"
+      }
+    ];
+
+    /* بيانات الأخبار */
+    const news = [
+      {
+        tag: "خبر الشركة",
+        title: "إطلاق تحديث جديد لأجهزة ستار نت",
+        text:
+          "التحديث الجديد يرفع استقرار النظام ويحسن سرعة فتح القنوات وخدمات الإنترنت.",
+        date: "18 يوليو 2026"
+      },
+      {
+        tag: "تنويه",
+        title: "إضافة ملفات قنوات محدثة لشهر يوليو",
+        text:
+          "تمت إضافة ملفات عربية وإنجليزية لأحدث موديلات الشركة.",
+        date: "17 يوليو 2026"
+      },
+      {
+        tag: "ترددات",
+        title: "تغييرات جديدة على عدد من القنوات الرياضية",
+        text:
+          "راجع قسم الترددات للحصول على البيانات الجديدة للقنوات.",
+        date: "16 يوليو 2026"
+      },
+      {
+        tag: "عرض",
+        title: "عرض خاص على جهاز STARNET EDGE PRO",
+        text:
+          "خصم لفترة محدودة مع دعم فني ومتابعة ما بعد البيع.",
+        date: "14 يوليو 2026"
+      }
+    ];
+
+    /* الأسئلة الشائعة */
+    const faqs = [
+      {
+        question: "كيف أعرف أن السوفت مناسب لجهازي؟",
+        answer:
+          "طابق اسم الموديل المكتوب على الجهاز مع اسم الموديل داخل قسم السوفتات، ولا تستخدم ملفًا خاصًا بموديل مختلف."
+      },
+      {
+        question: "كيف أحمل ملف القنوات من الجهاز؟",
+        answer:
+          "وصّل الجهاز بالإنترنت، ثم Menu، وبعدها File Manager، ثم القرص المشترك، ثم FTP، واختر اسم الجهاز ثم ملفات قنوات."
+      },
+      {
+        question: "هل السيرفرات تتفعل تلقائيًا؟",
+        answer:
+          "خدمات Forever وApollo تتفعل تلقائيًا بعد توصيل الجهاز بالإنترنت، ولا تحتاج إلى تفعيل يدوي منفصل."
+      },
+      {
+        question: "ماذا أفعل إذا استمرت المشكلة بعد التحديث؟",
+        answer:
+          "نفّذ استعادة للوضع الأصلي من Menu ثم تركيب ثم استعادة الوضع الأصلي واختر الكل، وبعدها أعد الإعداد."
+      }
+    ];
+
+    const selectOne = (selector) =>
+      document.querySelector(selector);
+
+    const selectAll = (selector) =>
+      Array.from(document.querySelectorAll(selector));
+
+    /* إظهار رسالة صغيرة */
+    function showToast(message) {
+      const toast = selectOne("#toast");
+
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(window.toastTimer);
+
+      window.toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2300);
+    }
+
+    /* التنقل بين الصفحات */
+    function goToPage(pageName) {
+      selectAll(".page").forEach((page) => {
+        page.classList.toggle(
+          "active",
+          page.dataset.page === pageName
+        );
+      });
+
+      selectAll(".nav-item").forEach((button) => {
+        button.classList.toggle(
+          "active",
+          button.dataset.pageTarget === pageName
+        );
+      });
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    /* عرض آخر التحديثات في الرئيسية */
+    function renderHomeUpdates() {
+      selectOne("#homeUpdates").innerHTML = software
+        .slice(0, 3)
+        .map(
+          (item) => `
+            <article class="card update-card">
+              <div class="device-image"></div>
+
+              <div>
+                <h3>${item.name}</h3>
+                <p>${item.note}</p>
+              </div>
+
+              <span class="badge">
+                ${item.version}
+              </span>
+            </article>
+          `
+        )
+        .join("");
+    }
+
+    /* عرض السوفتات */
+    function renderSoftware(list = software) {
+      const container = selectOne("#softwareList");
+
+      selectOne("#softwareCount").textContent =
+        list.length;
+
+      if (!list.length) {
+        container.innerHTML = `
+          <div class="empty">
+            لا توجد نتائج مطابقة.
+          </div>
+        `;
+
+        return;
+      }
+
+      container.innerHTML = list
+        .map(
+          (item) => `
+            <article class="card software-card">
+              <div class="device-image"></div>
+
+              <div>
+                <h3>${item.name}</h3>
+
+                <p>
+                  الإصدار ${item.version}
+                  • ${item.date}
+                  • ${item.size}
+                </p>
+
+                <p>${item.note}</p>
+              </div>
+
+              <button
+                class="download-button"
+                data-download="${item.name}"
+              >
+                تحميل
+              </button>
+            </article>
+          `
+        )
+        .join("");
+
+      addDownloadEvents();
+    }
+
+    /* عرض ملفات القنوات */
+    function renderChannelFiles(tabName = "arabic") {
+      const files = channelFilesData[tabName];
+
+      selectOne("#channelFiles").innerHTML = files
+        .map(
+          (file) => `
+            <article class="card file-card">
+              <div class="quick-icon">📁</div>
+
+              <div>
+                <h3>${file.name}</h3>
+
+                <p>
+                  ${file.satellite}
+                  • ${file.date}
+                  • ${file.size}
+                </p>
+              </div>
+
+              <button
+                class="download-button"
+                data-download="${file.name}"
+              >
+                تحميل
+              </button>
+            </article>
+          `
+        )
+        .join("");
+
+      addDownloadEvents();
+    }
+
+    /* عرض الترددات */
+    function renderFrequencies(list = frequencies) {
+      const container =
+        selectOne("#frequencyList");
+
+      if (!list.length) {
+        container.innerHTML = `
+          <div class="empty">
+            لا توجد قنوات مطابقة للبحث.
+          </div>
+        `;
+
+        return;
+      }
+
+      container.innerHTML = list
+        .map(
+          (item) => `
+            <article class="card frequency-card">
+              <div>
+                <h3>${item.channel}</h3>
+
+                <p>${item.satellite}</p>
+
+                <div class="frequency-details">
+                  <div class="frequency-stat">
+                    <small>التردد</small>
+                    <strong>${item.frequency}</strong>
+                  </div>
+
+                  <div class="frequency-stat">
+                    <small>الاستقطاب</small>
+                    <strong>${item.polarization}</strong>
+                  </div>
+
+                  <div class="frequency-stat">
+                    <small>الترميز</small>
+                    <strong>${item.symbolRate}</strong>
+                  </div>
+                </div>
+              </div>
+
+              <span
+                class="badge ${
+                  item.status === "جديد"
+                    ? "status-new"
+                    : "status-updated"
+                }"
+              >
+                ${item.status}
+              </span>
+            </article>
+          `
+        )
+        .join("");
+    }
+
+    /* عرض الأخبار */
+    function renderNews() {
+      const [featured, ...rest] = news;
+
+      selectOne("#featuredNews").innerHTML = `
+        <span class="news-tag">
+          ${featured.tag}
+        </span>
+
+        <h2>${featured.title}</h2>
+
+        <p>${featured.text}</p>
+
+        <p style="color:#67d8ff">
+          ${featured.date}
+        </p>
+      `;
+
+      selectOne("#newsList").innerHTML = rest
+        .map(
+          (item) => `
+            <article class="card news-card">
+              <div>
+                <span class="news-tag">
+                  ${item.tag}
+                </span>
+
+                <h3 style="margin-top:9px">
+                  ${item.title}
+                </h3>
+
+                <p>${item.text}</p>
+              </div>
+
+              <span class="news-date">
+                ${item.date}
+              </span>
+            </article>
+          `
+        )
+        .join("");
+    }
+
+    /* عرض الأسئلة الشائعة */
+    function renderFaqs() {
+      selectOne("#faqList").innerHTML = faqs
+        .map(
+          (item, index) => `
+            <article class="faq-item">
+              <button
+                class="faq-question"
+                data-faq="${index}"
+              >
+                <span>${item.question}</span>
+                <span class="faq-symbol">+</span>
+              </button>
+
+              <div class="faq-answer">
+                ${item.answer}
+              </div>
+            </article>
+          `
+        )
+        .join("");
+
+      selectAll("[data-faq]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const item =
+            button.closest(".faq-item");
+
+          const symbol =
+            button.querySelector(".faq-symbol");
+
+          item.classList.toggle("open");
+
+          symbol.textContent =
+            item.classList.contains("open")
+              ? "−"
+              : "+";
+        });
+      });
+    }
+
+    /* تحميل ملف تجريبي */
+    function downloadDemoFile(fileName) {
+      const fileContent =
+        `ستار نت\n` +
+        `ملف تجريبي: ${fileName}\n` +
+        `استبدل هذا الملف لاحقًا برابط التحميل الحقيقي.`;
+
+      const blob = new Blob(
+        [fileContent],
+        {
+          type: "text/plain;charset=utf-8"
+        }
+      );
+
+      const temporaryLink =
+        document.createElement("a");
+
+      temporaryLink.href =
+        URL.createObjectURL(blob);
+
+      temporaryLink.download =
+        `${fileName.replace(/\s+/g, "_")}.txt`;
+
+      temporaryLink.click();
+
+      URL.revokeObjectURL(
+        temporaryLink.href
+      );
+
+      showToast(
+        `بدأ تحميل: ${fileName}`
+      );
+    }
+
+    /* ربط أزرار التحميل */
+    function addDownloadEvents() {
+      selectAll("[data-download]").forEach(
+        (button) => {
+          button.addEventListener(
+            "click",
+            () => {
+              downloadDemoFile(
+                button.dataset.download
+              );
+            }
+          );
+        }
+      );
+    }
+
+    /* فلترة السوفتات */
+    function filterSoftware() {
+      const searchText =
+        selectOne("#softwareSearch")
+          .value
+          .trim()
+          .toLowerCase();
+
+      const selectedBrand =
+        selectOne("#brandFilter").value;
+
+      const filtered =
+        software.filter((item) => {
+          const matchesBrand =
+            selectedBrand === "all" ||
+            item.brand === selectedBrand;
+
+          const matchesSearch =
+            item.name
+              .toLowerCase()
+              .includes(searchText);
+
+          return (
+            matchesBrand &&
+            matchesSearch
+          );
+        });
+
+      renderSoftware(filtered);
+    }
+
+    /* فلترة الترددات */
+    function filterFrequencies() {
+      const searchText =
+        selectOne("#frequencySearch")
+          .value
+          .trim()
+          .toLowerCase();
+
+      const selectedSatellite =
+        selectOne("#satelliteFilter").value;
+
+      const filtered =
+        frequencies.filter((item) => {
+          const matchesSatellite =
+            selectedSatellite === "all" ||
+            item.satellite === selectedSatellite;
+
+          const matchesSearch =
+            item.channel
+              .toLowerCase()
+              .includes(searchText);
+
+          return (
+            matchesSatellite &&
+            matchesSearch
+          );
+        });
+
+      renderFrequencies(filtered);
+    }
+
+    /* أزرار شريط التنقل */
+    selectAll("[data-page-target]").forEach(
+      (button) => {
+        button.addEventListener(
+          "click",
+          () => {
+            goToPage(
+              button.dataset.pageTarget
+            );
+          }
+        );
+      }
+    );
+
+    /* أزرار الانتقال داخل التطبيق */
+    selectAll("[data-go]").forEach(
+      (button) => {
+        button.addEventListener(
+          "click",
+          () => {
+            goToPage(
+              button.dataset.go
+            );
+          }
+        );
+      }
+    );
+
+    /* إضافة أنواع الأجهزة إلى الفلتر */
+    const brands = [
+      ...new Set(
+        software.map(
+          (item) => item.brand
+        )
+      )
+    ];
+
+    brands.forEach((brand) => {
+      selectOne("#brandFilter")
+        .insertAdjacentHTML(
+          "beforeend",
+          `
+            <option value="${brand}">
+              ${brand}
+            </option>
+          `
+        );
+    });
+
+    /* إضافة الأقمار إلى الفلتر */
+    const satellites = [
+      ...new Set(
+        frequencies.map(
+          (item) => item.satellite
+        )
+      )
+    ];
+
+    satellites.forEach(
+      (satellite) => {
+        selectOne("#satelliteFilter")
+          .insertAdjacentHTML(
+            "beforeend",
+            `
+              <option value="${satellite}">
+                ${satellite}
+              </option>
+            `
+          );
+      }
+    );
+
+    /* البحث والفلترة */
+    selectOne("#brandFilter")
+      .addEventListener(
+        "change",
+        filterSoftware
+      );
+
+    selectOne("#softwareSearch")
+      .addEventListener(
+        "input",
+        filterSoftware
+      );
+
+    selectOne("#satelliteFilter")
+      .addEventListener(
+        "change",
+        filterFrequencies
+      );
+
+    selectOne("#frequencySearch")
+      .addEventListener(
+        "input",
+        filterFrequencies
+      );
+
+    /* تحديث قائمة الترددات */
+    selectOne("#refreshFrequencies")
+      .addEventListener(
+        "click",
+        () => {
+          selectOne("#frequencySearch")
+            .value = "";
+
+          selectOne("#satelliteFilter")
+            .value = "all";
+
+          renderFrequencies();
+
+          showToast(
+            "تم تحديث قائمة الترددات"
+          );
+        }
+      );
+
+    /* التبديل بين ملفات القنوات */
+    selectAll("[data-channel-tab]")
+      .forEach((button) => {
+        button.addEventListener(
+          "click",
+          () => {
+            selectAll(
+              "[data-channel-tab]"
+            ).forEach((item) => {
+              item.classList.remove(
+                "active"
+              );
+            });
+
+            button.classList.add(
+              "active"
+            );
+
+            renderChannelFiles(
+              button.dataset.channelTab
+            );
+          }
+        );
+      });
+
+    /* زر الإشعارات */
+    selectOne("#notificationButton")
+      .addEventListener(
+        "click",
+        () => {
+          showToast(
+            "لديك سوفت جديد و3 ترددات مضافة"
+          );
+        }
+      );
+
+    /* نافذة تذكرة الدعم */
+    const ticketModal =
+      selectOne("#ticketModal");
+
+    selectOne("#openTicketButton")
+      .addEventListener(
+        "click",
+        () => {
+          ticketModal.classList.add(
+            "show"
+          );
+        }
+      );
+
+    selectOne("#closeTicketButton")
+      .addEventListener(
+        "click",
+        () => {
+          ticketModal.classList.remove(
+            "show"
+          );
+        }
+      );
+
+    ticketModal.addEventListener(
+      "click",
+      (event) => {
+        if (event.target === ticketModal) {
+          ticketModal.classList.remove(
+            "show"
+          );
+        }
+      }
+    );
+
+    /* إرسال تذكرة الدعم */
+    selectOne("#ticketForm")
+      .addEventListener(
+        "submit",
+        (event) => {
+          event.preventDefault();
+
+          event.target.reset();
+
+          ticketModal.classList.remove(
+            "show"
+          );
+
+          showToast(
+            "تم إرسال طلب الدعم بنجاح"
+          );
+        }
+      );
+
+    /* تشغيل البيانات عند فتح التطبيق */
+    renderHomeUpdates();
+    renderSoftware();
+    renderChannelFiles();
+    renderFrequencies();
+    renderNews();
+    renderFaqs();
+  </script>
+</body>
+</html>
