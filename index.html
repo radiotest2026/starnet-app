@@ -165,7 +165,6 @@
       gap: 11px;
     }
 
-    /* تحديث اللوجو المخصص */
     .brand-logo {
       width: 48px;
       height: 48px;
@@ -365,6 +364,7 @@
       content: "";
 
       width: 7px;
+
       height: 7px;
 
       border-radius: 50%;
@@ -399,6 +399,10 @@
 
       padding: 12px 17px;
 
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
       border: none;
       border-radius: 14px;
 
@@ -420,14 +424,47 @@
       transition:
         transform 0.2s,
         box-shadow 0.2s;
+
+      animation: smoothPulse 3s infinite ease-in-out;
+    }
+
+    @keyframes smoothPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
     .hero-button:hover {
+      animation: none;
       transform: translateY(-2px);
+      box-shadow: 0 14px 28px rgba(36, 186, 255, 0.35);
+    }
 
-      box-shadow:
-        0 14px 28px
-        rgba(36, 186, 255, 0.35);
+    /* أيقونة الملف والسهم الأحمر الدوار حوله */
+    .file-download-container {
+      position: relative;
+      display: inline-flex;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+    }
+    .file-icon {
+      font-size: 16px;
+      z-index: 2;
+    }
+    .red-arrow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px solid transparent;
+      border-top-color: var(--red);
+      border-left-color: var(--red);
+      border-radius: 50%;
+      animation: rotateArrow 1.5s linear infinite;
+    }
+    @keyframes rotateArrow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
 
@@ -498,6 +535,7 @@
       top: 29px;
 
       width: 26px;
+
       height: 5px;
 
       border-radius: 4px;
@@ -1029,74 +1067,6 @@
           0 0 30px 30px;
       }
     }
-
-
-    /* ==============================
-       استجابة الموبايلات الصغيرة
-    ============================== */
-
-    @media (max-width: 390px) {
-      .app-content {
-        padding: 13px;
-      }
-
-      .hero-section {
-        min-height: 215px;
-
-        padding: 17px;
-      }
-
-      .hero-content h2 {
-        font-size: 23px;
-      }
-
-      .hero-device {
-        width: 115px;
-      }
-
-      .receiver-device {
-        width: 110px;
-        height: 62px;
-      }
-
-      .services-grid {
-        gap: 9px;
-      }
-
-      .service-card {
-        padding: 11px;
-
-        grid-template-columns:
-          42px 1fr;
-      }
-
-      .service-icon {
-        width: 42px;
-        height: 42px;
-
-        font-size: 20px;
-      }
-
-      .update-card {
-        grid-template-columns:
-          55px 1fr auto;
-      }
-
-      .update-device {
-        width: 55px;
-      }
-
-      .support-section {
-        grid-template-columns:
-          48px 1fr;
-      }
-
-      .support-button {
-        grid-column: 1 / -1;
-
-        width: 100%;
-      }
-    }
   </style>
 </head>
 
@@ -1163,22 +1133,25 @@
           </span>
 
           <h2>
-            أحدث السوفتات
+            سوفت جديد
             <br>
-            لأجهزة ستار نت
+            لجهاز ستار نت ايدج برو
           </h2>
 
           <p>
-            تابع أحدث السوفتات وملفات القنوات
-            والترددات الجديدة من مكان واحد.
+            لاضافه وتشغيل سيرفر ميجا بشكله الجديد
           </p>
 
           <button
             class="hero-button"
             type="button"
-            data-message="سيتم ربط زر التحديثات بالصفحة الخاصة به لاحقًا"
+            data-message="جاري بدء عملية التحميل..."
           >
-            استعرض التحديثات
+            <span class="file-download-container">
+              <span class="file-icon">📁</span>
+              <span class="red-arrow"></span>
+            </span>
+            حَمِّلْهُ الآن
           </button>
 
         </div>
