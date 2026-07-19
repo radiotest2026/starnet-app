@@ -6,7 +6,7 @@
 
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
   >
 
   <meta
@@ -64,20 +64,11 @@
 
     body {
       min-height: 100vh;
-
-      font-family:
-        Tahoma,
-        Arial,
-        sans-serif;
-
+      font-family: Tahoma, Arial, sans-serif;
       color: var(--text);
-
-      background:
-        linear-gradient(
-          145deg,
-          #dce8f6,
-          #f8fbff
-        );
+      background: linear-gradient(145deg, #dce8f6, #f8fbff);
+      overflow-x: hidden;
+      padding-top: 78px;
     }
 
     button,
@@ -100,16 +91,14 @@
     ============================== */
 
     .app {
-      width: min(100%, 520px);
+      width: 100%;
       min-height: 100vh;
-
       margin: auto;
-
       position: relative;
-      overflow: hidden;
-
-      padding-bottom: 95px;
-
+      overflow-x: hidden;
+      padding-bottom: 20px;
+      padding-left: 17px;
+      padding-right: 17px;
       background:
         radial-gradient(
           circle at top right,
@@ -126,42 +115,33 @@
           var(--background-light),
           var(--background)
         );
-
       box-shadow: var(--shadow);
     }
 
 
     /* ==============================
-       رأس التطبيق
+       رأس التطبيق (مُثبت)
     ============================== */
 
     .app-header {
-      position: sticky;
+      position: fixed;
       top: 0;
-
-      z-index: 50;
-
+      left: 0;
+      right: 0;
+      z-index: 100;
       min-height: 78px;
-
       padding: 13px 17px;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      border-bottom:
-        1px solid var(--border);
-
-      background:
-        rgba(6, 20, 44, 0.9);
-
+      border-bottom: 1px solid var(--border);
+      background: rgba(6, 20, 44, 0.95);
       backdrop-filter: blur(18px);
     }
 
     .brand {
       display: flex;
       align-items: center;
-
       gap: 11px;
     }
 
@@ -188,7 +168,6 @@
 
     .brand-info p {
       margin-top: 4px;
-
       font-size: 10px;
       color: var(--text-light);
     }
@@ -196,65 +175,45 @@
     .header-actions {
       display: flex;
       align-items: center;
-
       gap: 8px;
     }
 
     .header-button {
       width: 42px;
       height: 42px;
-
       position: relative;
-
-      border:
-        1px solid var(--border);
-
+      border: 1px solid var(--border);
       border-radius: 14px;
-
       color: white;
-
-      background:
-        rgba(255, 255, 255, 0.06);
-
-      transition:
-        transform 0.2s,
-        background 0.2s;
+      background: rgba(255, 255, 255, 0.06);
+      transition: transform 0.2s, background 0.2s;
     }
 
     .header-button:hover {
       transform: translateY(-2px);
-
-      background:
-        rgba(255, 255, 255, 0.11);
+      background: rgba(255, 255, 255, 0.11);
     }
 
     .notification-dot {
       position: absolute;
-
       top: 7px;
       left: 7px;
-
       width: 8px;
       height: 8px;
-
       border-radius: 50%;
-
       background: var(--red);
-
-      box-shadow:
-        0 0 10px
-        rgba(255, 99, 116, 0.75);
+      box-shadow: 0 0 10px rgba(255, 99, 116, 0.75);
     }
 
 
     /* ==============================
-       سلايدر البانر الجديد
+       سلايدر البانر
     ============================== */
     .hero-slider-container {
         position: relative;
         overflow: hidden;
         margin-top: 17px;
-        padding: 0 17px;
+        padding: 0;
         touch-action: pan-y;
     }
     
@@ -412,7 +371,7 @@
       filter: blur(8px);
     }
 
-    /* باقي التنسيقات ثابتة كما هي */
+    /* باقي التنسيقات */
     .section { margin-top: 24px; }
     .section-header { margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
     .section-title span { color: #68d4ff; font-size: 10px; }
@@ -439,13 +398,16 @@
     .support-info h2 { font-size: 14px; }
     .support-info p { margin-top: 5px; color: var(--text-light); font-size: 9px; line-height: 1.5; }
     .support-button { padding: 10px 12px; border: 1px solid var(--border); border-radius: 13px; color: white; font-size: 10px; font-weight: bold; background: rgba(255, 255, 255, 0.07); }
-    .bottom-navigation { width: min(100%, 520px); height: 78px; position: fixed; z-index: 60; bottom: 0; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--border); background: rgba(6, 20, 44, 0.96); backdrop-filter: blur(18px); }
+    
+    /* الناف بار السفلي الذكي */
+    .bottom-navigation { width: 100%; height: 78px; position: fixed; z-index: 60; bottom: -80px; left: 0; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--border); background: rgba(6, 20, 44, 0.98); backdrop-filter: blur(18px); transition: bottom 0.3s ease; }
+    .bottom-navigation.visible { bottom: 0; }
     .navigation-item { border: none; color: #7890aa; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; font-size: 9px; }
     .navigation-item.active { color: #67d7ff; }
     .navigation-icon { font-size: 20px; }
+    
     .toast { width: min(88%, 400px); position: fixed; z-index: 100; left: 50%; bottom: 95px; transform: translate(-50%, 20px); padding: 13px 16px; opacity: 0; pointer-events: none; text-align: center; border: 1px solid var(--border); border-radius: 15px; color: white; font-size: 12px; background: #102e5a; box-shadow: var(--shadow); transition: opacity 0.25s, transform 0.25s; }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
-    @media (min-width: 700px) { body { padding: 24px 0; } .app { min-height: calc(100vh - 48px); border-radius: 30px; } .app-header { border-radius: 30px 30px 0 0; } .bottom-navigation { bottom: 24px; border-radius: 0 0 30px 30px; } }
   </style>
 </head>
 
@@ -468,10 +430,8 @@
     </header>
 
     <main class="app-content">
-      <!-- السلايدر الجديد -->
       <div class="hero-slider-container">
         <div class="hero-slider-wrapper" id="heroSlider">
-            <!-- الشريحة 1 (إيدج برو) -->
             <section class="hero-section">
                 <div class="hero-content">
                     <span class="hero-label">تحديث جديد</span>
@@ -483,7 +443,6 @@
                 </div>
                 <div class="hero-device-wrapper"><div class="receiver-shadow"></div><img class="device-image-custom" src="https://i.postimg.cc/zBttP2gR/Picsart-26-07-19-02-15-18-985.png" alt="ستار نت ايدج برو"></div>
             </section>
-            <!-- الشريحة 2 -->
             <section class="hero-section">
                 <div class="hero-content">
                     <span class="hero-label">مميز</span>
@@ -493,7 +452,6 @@
                 </div>
                 <div class="hero-device-wrapper"><div class="receiver-shadow"></div><img class="device-image-custom" src="https://i.postimg.cc/zBttP2gR/Picsart-26-07-19-02-15-18-985.png" alt="تحديث سيرفر"></div>
             </section>
-            <!-- الشريحة 3 -->
             <section class="hero-section">
                 <div class="hero-content">
                     <span class="hero-label">حصري</span>
@@ -503,7 +461,6 @@
                 </div>
                 <div class="hero-device-wrapper"><div class="receiver-shadow"></div><img class="device-image-custom" src="https://i.postimg.cc/zBttP2gR/Picsart-26-07-19-02-15-18-985.png" alt="ملف قنوات"></div>
             </section>
-            <!-- الشريحة 4 -->
             <section class="hero-section">
                 <div class="hero-content">
                     <span class="hero-label">دعم فني</span>
@@ -516,7 +473,6 @@
         </div>
       </div>
 
-      <!-- الخدمات وباقي الأقسام -->
       <section class="section">
         <div class="section-header">
           <div class="section-title"><span>1. اختر الخدمة</span><h2>خدمات التطبيق</h2></div>
@@ -546,9 +502,11 @@
         <div class="support-info"><h2>محتاج مساعدة؟</h2><p>فريق الدعم الفني جاهز لمساعدتك في أي مشكلة.</p></div>
         <button class="support-button" type="button" data-message="سيتم ربط الدعم الفني لاحقًا">تواصل معنا</button>
       </section>
+      
+      <div style="height: 50px;"></div>
     </main>
 
-    <nav class="bottom-navigation">
+    <nav class="bottom-navigation" id="bottomNav">
       <button class="navigation-item active" type="button" data-message="أنت موجود بالفعل في الصفحة الرئيسية"><span class="navigation-icon">🏠</span><span>الرئيسية</span></button>
       <button class="navigation-item" type="button" data-message="سيتم إنشاء صفحة الأجهزة لاحقًا"><span class="navigation-icon">📦</span><span>الأجهزة</span></button>
       <button class="navigation-item" type="button" data-message="سيتم إنشاء صفحة التحميلات لاحقًا"><span class="navigation-icon">⬇️</span><span>التحميلات</span></button>
@@ -560,13 +518,21 @@
   <div class="toast" id="toast"></div>
 
   <script>
+    const nav = document.getElementById('bottomNav');
+    window.addEventListener('scroll', () => {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
+            nav.classList.add('visible');
+        } else {
+            nav.classList.remove('visible');
+        }
+    });
+
     const toast = document.getElementById("toast");
     const buttons = document.querySelectorAll("[data-message]");
     let toastTimer;
     function showToast(message) { toast.textContent = message; toast.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(() => { toast.classList.remove("show"); }, 2200); }
     buttons.forEach((button) => { button.addEventListener("click", () => { showToast(button.dataset.message); }); });
 
-    // منطق التحميل مع الرسالة
     document.querySelectorAll('.download-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -578,12 +544,10 @@
         });
     });
 
-    // منطق السلايدر
     const slider = document.getElementById('heroSlider');
     let currentIndex = 0;
     const slides = document.querySelectorAll('.hero-section');
     let autoPlay = setInterval(nextSlide, 2000);
-    let isDragging = false;
 
     function nextSlide() {
         currentIndex = (currentIndex + 1) % slides.length;
